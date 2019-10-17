@@ -1,0 +1,13 @@
+<style>
+    body {
+        background-color: pink;
+    }
+</style>
+
+<h1 class="jumbotron">Scraping</h1>
+{{#each articles}}
+<h3>{{this.title}}</h3>
+<h4>Link: {{this.link}}</h4>
+<h5>id: {{this.id}}</h5>
+<hr>
+{{/each}}
