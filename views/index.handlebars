@@ -2,12 +2,19 @@
     body {
         background-color: pink;
     }
+    .jumbotron {
+        text-align: center;
+    }
 </style>
+<div class="jumbotron">
 
-<h1 class="jumbotron">Scraping</h1>
+    <h1>Index Scraping</h1>
+    <h4>Articles from the Hungarian website "www.index.hu"</h4>
+
+</div>
 {{#each articles}}
 <h3>{{this.title}}</h3>
-<h4>Link: {{this.link}}</h4>
-<h5>id: {{this.id}}</h5>
+<h5>Link: {{this.link}}</h5>
+<p>id: {{this.id}}</p>
 <hr>
 {{/each}}
