@@ -72,8 +72,9 @@ $.getJSON("/articles", function(data) {
     $("#bodyinput").val("");
   });
 
-  $("#saveArticle").on("click", function() {
-    //alert("Im clicked");
+  $(".saveArticle").on("click", function() {
+    event.preventDefault();
+    alert("Im clicked");
     var thisId = $(this).data("id");
     console.log(thisId);
     $.ajax({
@@ -83,22 +84,34 @@ $.getJSON("/articles", function(data) {
         isSaved: true
       }
     })
-    
+    .then(function(data){
+      console.log(data)
+    })
   })
 
-  $("#addNote").on("click", function() {
+  $(".addNote").on("click", function() {
     $("#myModal").css("display", "block");
   });
 
-  $("#saveChanges").on("click", function() {
-    alert("clicked");
+  $(".close").on("click", function() {
+    $("#myModal").css("display", "none");
+  });
+
+  $(".closeButton").on("click", function() {
+    $("#myModal").css("display", "none");
+  });
+
+
+  $(".saveChanges").on("click", function() {
+    //alert("clicked");
     var thisId = $(this).attr("data-id");
-    var inputNote = $("#inputNoteArea").val();
+    var inputNote = $(".inputNoteArea").val();
     $.ajax({
       method: "POST",
-      url: "/articles/5daa59dad5ab306607363671",
+      url: "/articles/" + thisId,
       data: inputNote
     })
+    console.log(inputNote);
   })
 
 })
