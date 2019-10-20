@@ -54,6 +54,11 @@ app.get("/", (req,res) => {
             // Then, we load that into cheerio and save it to $ for a shorthand selector
             var $ = cheerio.load(response.data);
 
+            let ps = [];
+            $("div h1").first().siblings("span p").each(function(i, element) {
+                ps.push($(element).text())
+            })
+            //console.log(ps);
             // Now, we grab every h2 within an article tag, and do the following:
             $("div h1").each(function (i, element) {
                 // Save an empty result object
@@ -66,7 +71,8 @@ app.get("/", (req,res) => {
                 result.link = $(this)
                     .children("a")
                     .attr("href");
-
+                result.isSaved = false;
+                //console.log(result);
                 // Create a new Article using the `result` object built from scraping
                 db.Article.create(result)
                     .then(function (dbArticle) {
@@ -98,6 +104,30 @@ app.get("/", (req,res) => {
             });
     });
 
+    //Route to save an article
+  app.post("/articles/:id", (req,res) => {
+    db.Article.update(req.body)
+    .then(function(dbArticle) {
+        return db.Article.update({ _id: req.params.id }, { isSaved: true });
+    })
+    .then(function(dbArticle) {
+        // If we were able to successfully update an Article, send it back to the client
+        res.json(dbArticle);
+      })
+      .catch(function(err) {
+        // If an error occurred, send it to the client
+        res.json(err);
+      });
+  });
+
+  //render saved articles on saved.handlebars page
+  app.get("/saved", (req,res) => {
+    db.Article
+      .find({"isSaved": true})
+      .then(articles => res.render('saved', {articles}))
+      .catch(err=> res.json(err));
+  });
+
     // Route for grabbing a specific Article by id, populate it with it's note
     app.get("/articles/:id", function (req, res) {
         // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
@@ -116,6 +146,7 @@ app.get("/", (req,res) => {
 
     // Route for saving/updating an Article's associated Note
     app.post("/articles/:id", function (req, res) {
+        console.log("route hit");
         // Create a new note and pass the req.body to the entry
         db.Note.create(req.body)
             .then(function (dbNote) {
@@ -133,6 +164,30 @@ app.get("/", (req,res) => {
                 res.json(err);
             });
     });
+
+    //delete collection on click
+    app.delete("/items/:id", (req, res) => {
+        db.Article("items").remove({_id: mongodb.ObjectID( req.params.id)}, (err, result) => {
+          if (err) return console.log(err)
+          console.log(req.body)
+          res.redirect("/")
+        })
+      })
+
+    /*app.post("/api/notes", (req, res) => {
+        console.log("api route hit");
+        db.note.create(req.body).then(function(dbNote){
+            console.log("db.Note.create(req.body)");
+            let postData = req.body;
+            return db.Article.findOneAndUpdate({_id: postData.req.params.id},{$push:{note: dbNote._id}},{new: true}).then(function(dbArticle){
+                console.log("findOneAndUpdate");
+                res.redirect("/saved").catch(function(error){
+                    console.log(error);
+                    res.redirect(404);
+                })
+            })
+        })
+    });*/
 
     // Start the server
     app.listen(PORT, function () {

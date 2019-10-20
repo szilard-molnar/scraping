@@ -1,3 +1,5 @@
+$(function() {
+
 // Grab the articles as a json
 $.getJSON("/articles", function(data) {
     // For each one
@@ -69,4 +71,35 @@ $.getJSON("/articles", function(data) {
     $("#titleinput").val("");
     $("#bodyinput").val("");
   });
+
+  $("#saveArticle").on("click", function() {
+    //alert("Im clicked");
+    var thisId = $(this).data("id");
+    console.log(thisId);
+    $.ajax({
+      method: "POST",
+      url: "/articles/"+ thisId,
+      data: {
+        isSaved: true
+      }
+    })
+    
+  })
+
+  $("#addNote").on("click", function() {
+    $("#myModal").css("display", "block");
+  });
+
+  $("#saveChanges").on("click", function() {
+    alert("clicked");
+    var thisId = $(this).attr("data-id");
+    var inputNote = $("#inputNoteArea").val();
+    $.ajax({
+      method: "POST",
+      url: "/articles/5daa59dad5ab306607363671",
+      data: inputNote
+    })
+  })
+
+})
   

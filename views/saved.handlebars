@@ -39,6 +39,27 @@
 <!-- <h5>Link: {{this.link}}</h5>
 <p>id: {{this.id}}</p> -->
 <p>{{this.p.span}}</p>
-<button type="button" class="btn btn-primary" id="saveArticle" data-id="{{this._id}}">Save article</button>
+<button type="button" class="btn btn-primary" id="addNote" data-id="{{this._id}}">Add notes</button>
 <hr>
 {{/each}}
+
+<div class="modal" id="myModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Add note</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input type="textarea" id="inputNoteArea">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="saveChanges">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
