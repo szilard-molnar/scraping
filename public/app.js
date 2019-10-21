@@ -91,7 +91,14 @@ $.getJSON("/articles", function(data) {
 
   $(".addNote").on("click", function() {
     $("#myModal").css("display", "block");
-  });
+    var thisId = $(this).data("id");
+    console.log(thisId)
+    /*
+    $.ajax({
+      method: "GET",
+      url: "/notes/" + thisId,  
+    })*/
+  
 
   $(".close").on("click", function() {
     $("#myModal").css("display", "none");
@@ -104,15 +111,22 @@ $.getJSON("/articles", function(data) {
 
   $(".saveChanges").on("click", function() {
     //alert("clicked");
-    var thisId = $(this).attr("data-id");
+    
+    console.log(thisId);
     var inputNote = $(".inputNoteArea").val();
+    console.log(inputNote);
+    var data = {};
+    data.body = inputNote;
+    data.article = thisId;
+    console.log("this si the new note", data);
     $.ajax({
       method: "POST",
-      url: "/articles/" + thisId,
-      data: inputNote
+      url: "/notes/" + thisId,
+      data: data
+    }).then(function(data) {
+      console.log("success", data);
     })
-    console.log(inputNote);
   })
-
+})
 })
   

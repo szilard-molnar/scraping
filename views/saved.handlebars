@@ -36,8 +36,8 @@
 </div>
 {{#each articles}}
 <a href={{this.link}}>{{this.title}}</a>
-<!-- <h5>Link: {{this.link}}</h5>
-<p>id: {{this.id}}</p> -->
+<!-- <h5>Link: {{this.link}}</h5> -->
+<p>id: {{this._id}}</p>
 <p>{{this.p.span}}</p>
 <button type="button" class="btn btn-primary addNote" data-id="{{this._id}}">Add notes</button>
 <hr>

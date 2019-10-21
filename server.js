@@ -166,28 +166,25 @@ app.get("/", (req,res) => {
     });
 
     //delete collection on click
-    app.delete("/items/:id", (req, res) => {
+    /*app.delete("/items/:id", (req, res) => {
         db.Article("items").remove({_id: mongodb.ObjectID( req.params.id)}, (err, result) => {
           if (err) return console.log(err)
           console.log(req.body)
           res.redirect("/")
         })
-      })
+      })*/
 
-    /*app.post("/api/notes", (req, res) => {
-        console.log("api route hit");
-        db.note.create(req.body).then(function(dbNote){
-            console.log("db.Note.create(req.body)");
-            let postData = req.body;
-            return db.Article.findOneAndUpdate({_id: postData.req.params.id},{$push:{note: dbNote._id}},{new: true}).then(function(dbArticle){
-                console.log("findOneAndUpdate");
-                res.redirect("/saved").catch(function(error){
-                    console.log(error);
-                    res.redirect(404);
-                })
-            })
+    app.post("/notes/:id", function(req, res){
+        //console.log("api route hit");
+        db.Note.create(req.body)
+        .then(function(dbNote){
+             db.Article.findOneAndUpdate({"_id": req.params.id},{$push:{"notes": dbNote}}) 
+             console.log(dbNote);
+        }).catch(function(error) {
+            // log error
+            console.log(error);
         })
-    });*/
+    })
 
     // Start the server
     app.listen(PORT, function () {
