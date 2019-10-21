@@ -92,20 +92,28 @@ $.getJSON("/articles", function(data) {
   $(".addNote").on("click", function() {
     $("#myModal").css("display", "block");
     var thisId = $(this).data("id");
-    console.log(thisId)
-    /*
+    //console.log("is this the right?", thisId);
+
     $.ajax({
       method: "GET",
       url: "/notes/" + thisId,  
-    })*/
+    }).then(function(data) {
+      //$("#allTheNotes").append("I suck");
+      for(let i = 0; i < data.length; i++)
+      {
+        $("#allTheNotes").append('<p>' + data[i].body + '<button type="button" class="close">x</button>' + '</p>');
+      }
+    })
   
 
   $(".close").on("click", function() {
     $("#myModal").css("display", "none");
+    $("#allTheNotes").empty();
   });
 
   $(".closeButton").on("click", function() {
     $("#myModal").css("display", "none");
+    $("#allTheNotes").empty();
   });
 
 
@@ -118,7 +126,7 @@ $.getJSON("/articles", function(data) {
     var data = {};
     data.body = inputNote;
     data.article = thisId;
-    console.log("this si the new note", data);
+    //console.log("this is the new note", data);
     $.ajax({
       method: "POST",
       url: "/notes/" + thisId,
@@ -126,6 +134,7 @@ $.getJSON("/articles", function(data) {
     }).then(function(data) {
       console.log("success", data);
     })
+    $("#myModal").css("display", "none");
   })
 })
 })

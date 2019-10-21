@@ -184,9 +184,19 @@ app.get("/", (req,res) => {
             // log error
             console.log(error);
         })
-    })
+    });
 
-    // Start the server
+    app.get("/notes/:id", function(req,res) {
+        db.Note.find({"article": req.params.id})
+    .then(function(data) {
+        res.json(data);
+    }).catch(function(error) {
+        res.json(error);
+    });
+});
+    
+// Start the server
     app.listen(PORT, function () {
         console.log("App running on port " + PORT + "!");
     });
+
