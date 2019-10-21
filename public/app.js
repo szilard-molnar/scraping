@@ -11,7 +11,7 @@ $.getJSON("/articles", function(data) {
 
   $(".saveArticle").on("click", function() {
     event.preventDefault();
-    alert("Im clicked");
+    alert("Article saved.");
     var thisId = $(this).data("id");
     console.log(thisId);
     $.ajax({
@@ -48,7 +48,7 @@ $.getJSON("/articles", function(data) {
         $.ajax("/notes/" + deleteId, {
           method: "DELETE",
         }).then(function (data) {
-          console.log("post de;ete", data)
+          console.log("post delete", data)
           $('p[data-id="'+deleteId+'"]').remove();
           
       })
