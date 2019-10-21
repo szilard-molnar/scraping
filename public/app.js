@@ -38,7 +38,7 @@ $.getJSON("/articles", function(data) {
       //$("#allTheNotes").append("I suck");
       for(let i = 0; i < data.length; i++)
       {
-        $("#allTheNotes").append('<p>' + data[i].body + '<button type="button" class="close deleteNoteButton" data-id="' + data[i]._id + '">x</button>' + '</p>');
+        $("#allTheNotes").append('<p data-id="' + data[i]._id + '">' + data[i].body + '<button type="button" class="close deleteNoteButton" data-id="' + data[i]._id + '">x</button>' + '</p>');
       }
       $(".deleteNoteButton").on("click", function(event) {
         event.preventDefault();
@@ -49,12 +49,8 @@ $.getJSON("/articles", function(data) {
           method: "DELETE",
         }).then(function (data) {
           console.log("post de;ete", data)
-          $("#allTheNotes").empty();
-          console.log("let's look at this data")
-          for (let i = 0; i < data.length; i++) {
-              // Display the information on the page
-              $("#allTheNotes").append('<p>' + data[i].body + "<button class='delete-note' data-id='" + data[i]._id + "'>x</button></p>");
-          }
+          $('p[data-id="'+deleteId+'"]').remove();
+          
       })
         })
         //$("#myModal").css("display", "none");
