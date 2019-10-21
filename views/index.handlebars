@@ -3,7 +3,7 @@
         background-color: pink;
     }
     .jumbotron {
-        text-align: center;
+        text-align: left;
     }
     a {
         font-size: 30px;
@@ -21,6 +21,7 @@
     #navbarButtonDelete {
         font-size: 15px!important;
     }
+    
 </style>
 <nav class="navbar navbar-dark bg-primary">
   <a class="nav-item nav-link active" id="navbarButton" href="/">Home <span class="sr-only">(current)</span></a>
@@ -32,7 +33,6 @@
 
     <h1>Index Scraping</h1>
     <h4>Articles from the Hungarian website "www.index.hu"</h4>
-
 </div>
 {{#each articles}}
 <a href={{this.link}}>{{this.title}}</a>

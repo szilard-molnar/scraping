@@ -2,8 +2,10 @@
     body {
         background-color: pink;
     }
-    .jumbotron {
-        text-align: center;
+    .background {
+        text-align: left;
+        /*background-image: url("layouts/images/breaking-news.jpg");
+        background-size: cover; */
     }
     a {
         font-size: 30px;
@@ -21,6 +23,7 @@
     #navbarButtonDelete {
         font-size: 15px!important;
     }
+    
 </style>
 <nav class="navbar navbar-dark bg-primary">
   <a class="nav-item nav-link active" id="navbarButton" href="/">Home <span class="sr-only">(current)</span></a>
@@ -28,11 +31,10 @@
       <a class="nav-item nav-link" id="navbarButton" href="/saved">Saved Articles</a>
 </nav>
 
-<div class="jumbotron">
+<div class="jumbotron background">
 
     <h1>Index Scraping</h1>
     <h4>Articles from the Hungarian website "www.index.hu"</h4>
-
 </div>
 {{#each articles}}
 <a href={{this.link}}>{{this.title}}</a>

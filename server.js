@@ -164,16 +164,7 @@ app.get("/", (req,res) => {
                 res.json(err);
             });
     });
-
-    //delete collection on click
-    /*app.delete("/items/:id", (req, res) => {
-        db.Article("items").remove({_id: mongodb.ObjectID( req.params.id)}, (err, result) => {
-          if (err) return console.log(err)
-          console.log(req.body)
-          res.redirect("/")
-        })
-      })*/
-
+   
     app.post("/notes/:id", function(req, res){
         //console.log("api route hit");
         db.Note.create(req.body)
@@ -194,6 +185,24 @@ app.get("/", (req,res) => {
         res.json(error);
     });
 });
+
+//====================================================================
+    // Delete a selected note
+
+    app.delete("/notes/:id", function(req, res) {
+        console.log("I'm about to delete this note");
+        db.Note.findByIdAndDelete({ _id: req.params.id })
+            .then(function (dbNote) {
+                res.json(dbNote);
+            })
+            .catch(function (error) {
+                // if an error happened
+                res.json(error);
+            })
+    });
+
+
+//==================================================================== 
     
 // Start the server
     app.listen(PORT, function () {
