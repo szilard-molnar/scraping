@@ -203,7 +203,22 @@ app.get("/", (req,res) => {
 
 
 //==================================================================== 
-    
+
+// Clear the article collection
+
+app.delete("/articles", function(req,res) {
+    console.log("I will delete ALL the articles!!!");
+    db.Article.remove({ })
+    .then(function(dbArticle) {
+        res.json(dbArticle);
+    })
+    .catch(function(error) {
+        res.json(error);
+    })
+})
+
+//====================================================================
+
 // Start the server
     app.listen(PORT, function () {
         console.log("App running on port " + PORT + "!");

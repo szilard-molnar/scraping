@@ -21,18 +21,24 @@
     #navbarButtonDelete {
         font-size: 15px!important;
     }
+    #navbarButton, #navbarButtonDelete, #scrapeNewButton {
+      color: black!important;
+      font-size: 20px!important;
+    }
+    #navbarButton:hover, #navbarButtonDelete:hover, #scrapeNewButton:hover {
+      color: blue!important;
+    }
     
 </style>
-<nav class="navbar navbar-dark bg-primary">
-  <a class="nav-item nav-link active" id="navbarButton" href="/">Home <span class="sr-only">(current)</span></a>
-      <a class="nav-item nav-link" id="navbarButtonDelete" href="/items/delete/{{_id}}">Clear Articles</a>
-      <a class="nav-item nav-link" id="navbarButton" href="/saved">Saved Articles</a>
-</nav>
 
 <div class="jumbotron">
 
     <h1>Index Scraping</h1>
     <h4>Articles from the Hungarian website "www.index.hu"</h4>
+    <a class="nav-item nav-link active" id="navbarButton" href="/">Home <span class="sr-only">(current)</span></a>
+    <a class="nav-item nav-link" id="navbarButtonDelete" href="/items/delete/{{_id}}">Clear Articles</a>
+    <a class="nav-item nav-link" id="scrapeNewButton" href="#">Scrape new articles</a>
+    <a class="nav-item nav-link" id="navbarButton" href="/saved">Saved Articles</a>
 </div>
 {{#each articles}}
 <a href={{this.link}}>{{this.title}}</a>

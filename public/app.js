@@ -90,5 +90,27 @@ $.getJSON("/articles", function(data) {
     $("#myModal").css("display", "none");
   })
 })
+
+$("#navbarButtonDelete").on("click", function(event) {
+  event.preventDefault();
+  //alert("this works");
+  $.ajax("/articles", {
+    method: "DELETE",
+  }).then(function (data) {
+    console.log("all articles deleted.", data)
+})
+  location.reload();
 });
-  
+
+$("#scrapeNewButton").on("click", function(event) {
+  event.preventDefault();
+  //alert("scrape button is working :)");
+  $.ajax("/scrape", {
+    method: "GET",
+  }).then(function (data) {
+    console.log("new articles scraped", data)
+    location.reload();
+})
+});
+
+})
