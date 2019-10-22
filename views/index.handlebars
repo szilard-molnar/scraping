@@ -1,6 +1,9 @@
 <style>
     body {
-        background-image: url("https://bloximages.chicago2.vip.townnews.com/tucson.com/content/tncms/assets/v3/editorial/5/cf/5cf9f4f4-df43-11e6-b516-f70c5301ad37/58825f65b213c.image.jpg");
+        background-image: url("https://blog.tcea.org/wp-content/uploads/2019/06/news-1414325_960_720.jpg");
+        background-attachment: fixed;
+        background-repeat: no-repeat;
+        background-size: 100%;
     }
     .jumbotron {
         text-align: left;
@@ -12,8 +15,20 @@
         background-position: right;
 
     }
+    .eachArticle {
+        background-color: white;
+        margin-bottom: 20px;
+        padding: 20px;
+        opacity: 0.7;
+    }
     a {
         font-size: 30px;
+        font-weight: bold;
+        color: black;
+        margin-left: 40px;
+    }
+    .saveArticle {
+        margin-left: 40px;
     }
     a:hover {
         text-decoration: none;
@@ -47,11 +62,13 @@
     <a class="nav-item nav-link" id="scrapeNewButton" href="#">Scrape new articles</a>
     <a class="nav-item nav-link" id="navbarButton" href="/saved">Saved Articles</a>
 </div>
+
 {{#each articles}}
+<div class="eachArticle col-lg-10 offset-lg-1">
 <a href={{this.link}}>{{this.title}}</a>
 <!-- <h5>Link: {{this.link}}</h5>
 <p>id: {{this.id}}</p> -->
 <p>{{this.p.span}}</p>
 <button type="button" class="btn btn-primary saveArticle" data-id="{{this._id}}">Save article</button>
-<hr>
+</div>
 {{/each}}
