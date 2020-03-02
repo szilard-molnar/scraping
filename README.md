@@ -18,6 +18,7 @@ The user should click on this button below an article in order to save it.
 
 
 On this page the user can see the saved articles.
+
 ![app screenshot](/views/layouts/images/saved-article-page.png)
 
 
