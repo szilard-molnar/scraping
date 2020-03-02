@@ -2,4 +2,5 @@
 
 This app scrapes articles from the Hungarian website "index.hu".
 
-I decided
+The application looks like this upon opening:
+![app screenshot](/views/layouts/images/index-scraping-front.png);
