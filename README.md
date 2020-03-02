@@ -25,3 +25,9 @@ On this page the user can see the saved articles.
 Saved articles have an "Add/delete notes" button, which allows the user to write/delete comments on the selected article. 
 ![app screenshot](/views/layouts/images/add-note.png)
 
+Clicking on "Save changes" saves our comment, and clicking the "x" symbol next to it will delete it.
+![app screenshot](/views/layouts/images/save-comment.png)
+
+Hope you will enjoy. :)
+
+
