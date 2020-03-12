@@ -28,6 +28,10 @@ Saved articles have an "Add/delete notes" button, which allows the user to write
 Clicking on "Save changes" saves our comment, and clicking the "x" symbol next to it will delete it.
 ![app screenshot](/views/layouts/images/save-comment.png)
 
+Click the link below to check out the app:
+
+https://mysterious-mountain-52710.herokuapp.com/
+
 Hope you will enjoy. :)
 
 
